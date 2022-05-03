@@ -1,30 +1,8 @@
-// // TODO: Include packages needed for this application
-
-// // TODO: Create an array of questions for user input
-// const questions = [];
-
-// // TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
-
-// // TODO: Create a function to initialize app
-// function init() {}
-
-// // Function call to initialize app
-// init();
-
-// Use writeFileSync method to use promises instead of a callback function
-
-
+// TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-
-
-
-//mini project for 9 that generates HTML doc
-
-
-
+// questions for user input
 const promptUser = () => {
   return inquirer.prompt([
     {
@@ -35,42 +13,26 @@ const promptUser = () => {
     {
       type: 'input',
       name: 'description',
-      message: 'Please provide a short description of your project answering questions like what, why, and how.',
-    },
-    {
-      type: 'input',
-      name: 'ToC',
-      message: 'Will you need a table of contents?',
+      message: 'Please provide a short description of your project.',
     },
     {
       type: 'input',
       name: 'installation',
-      message: 'Please provide a step-by-step descriptoin on how to install your project and prepare the development environment.',
+      message: 'Please provide a step-by-step description on how to install your project and prepare the development environment.',
     },
     {
       type: 'input',
       name: 'usage',
-      message: 'Provide instructions and examples for use, including screenshots as needed.',
+      message: 'Provide instructions and examples for use.',
     },
     {
-      type: 'input',
-      name: 'credits',
-      message: 'Enter your github username.',
-    },
-    {
-      type: 'checkbox',
+      type: 'list',
       name: 'license',
       message: 'Please select the license needed for your project.',
-    },
-    {
-      type: 'input',
-      name: 'badges',
-      message: 'Please list any badges associated with your project.',
-    },
-    {
-      type: 'input',
-      name: 'features',
-      message: 'Please provide a list of features your project employs.',
+      choices: ['MIT', 'ISC', "GNUPv3"],
+      filter(val) {
+        return val.toLowerCase
+      }
     },
     {
       type: 'input',
@@ -80,24 +42,72 @@ const promptUser = () => {
     {
       type: 'input',
       name: 'tests',
-      message: 'Provide examples of tests for your applicatoin and how to run them.',
+      message: 'Provide examples of tests for your application and how to run them.',
+    },
+    {
+      type: 'input',
+      name: 'email',
+      message: 'Enter your email for user questions.',
+    },
+    {
+      type: 'input',
+      name: 'gtihub',
+      message: 'Enter your github username.',
     },
   ]);
 };
 
-const generateREADME = ({ title, description, ToC, installation, usage, credits, license, badges, features, contribute, tests }) =>
+// function to write README file
+
+const generateREADME = ({ title, description, installation, usage, license, contribute, tests, email, github }) =>
 
 // insert template for new readme doc
+`## ${title}
 
-;
+## Description
 
-// Bonus using writeFileSync as a promise
+${description}
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
+
+## Installation
+
+${installation}
+
+## Usage
+
+${usage}
+
+## License
+
+${license}
+
+## Contributing
+
+${contribute}
+
+## Tests
+
+${tests}
+
+## Questions
+${email}
+${github}`;
+
+// Use writeFileSync method to use promises instead of a callback function
 const init = () => {
   promptUser()
-    // Use writeFileSync method to use promises instead of a callback function
     .then((answers) => fs.writeFileSync('README1.md', generateREADME(answers)))
     .then(() => console.log('Successfully wrote to README1.md'))
     .catch((err) => console.error(err));
 };
 
+// function init() {}
 init();
+
+// open terminal and initialize app using 'node index.js' as a command
