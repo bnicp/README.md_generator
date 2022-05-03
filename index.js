@@ -12,11 +12,13 @@
 // // Function call to initialize app
 // init();
 
+// Use writeFileSync method to use promises instead of a callback function
+
 
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-// Use writeFileSync method to use promises instead of a callback function
+
 
 
 //mini project for 9 that generates HTML doc
@@ -27,60 +29,67 @@ const promptUser = () => {
   return inquirer.prompt([
     {
       type: 'input',
-      name: 'name',
-      message: 'What is your name?',
+      name: 'title',
+      message: 'What is the title of your project?',
     },
     {
       type: 'input',
-      name: 'location',
-      message: 'Where are you from?',
+      name: 'description',
+      message: 'Please provide a short description of your project answering questions like what, why, and how.',
     },
     {
       type: 'input',
-      name: 'hobby',
-      message: 'What is your favorite hobby?',
+      name: 'ToC',
+      message: 'Will you need a table of contents?',
     },
     {
       type: 'input',
-      name: 'food',
-      message: 'What is your favorite food?',
+      name: 'installation',
+      message: 'Please provide a step-by-step descriptoin on how to install your project and prepare the development environment.',
     },
     {
       type: 'input',
-      name: 'github',
-      message: 'Enter your GitHub Username',
+      name: 'usage',
+      message: 'Provide instructions and examples for use, including screenshots as needed.',
     },
     {
       type: 'input',
-      name: 'linkedin',
-      message: 'Enter your LinkedIn URL.',
+      name: 'credits',
+      message: 'Enter your github username.',
+    },
+    {
+      type: 'checkbox',
+      name: 'license',
+      message: 'Please select the license needed for your project.',
+    },
+    {
+      type: 'input',
+      name: 'badges',
+      message: 'Please list any badges associated with your project.',
+    },
+    {
+      type: 'input',
+      name: 'features',
+      message: 'Please provide a list of features your project employs.',
+    },
+    {
+      type: 'input',
+      name: 'contribute',
+      message: 'Please provide ways other users can contribute.',
+    },
+    {
+      type: 'input',
+      name: 'tests',
+      message: 'Provide examples of tests for your applicatoin and how to run them.',
     },
   ]);
 };
 
-const generateREADME = ({ name, location, github, linkedin }) =>
-  `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <title>Document</title>
-</head>
-<body>
-  <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Hi! My name is ${name}</h1>
-    <p class="lead">I am from ${location}.</p>
-    <h3>Example heading <span class="badge badge-secondary">Contact Me</span></h3>
-    <ul class="list-group">
-      <li class="list-group-item">My GitHub username is ${github}</li>
-      <li class="list-group-item">LinkedIn: ${linkedin}</li>
-    </ul>
-  </div>
-</div>
-</body>
-</html>`;
+const generateREADME = ({ title, description, ToC, installation, usage, credits, license, badges, features, contribute, tests }) =>
+
+// insert template for new readme doc
+
+;
 
 // Bonus using writeFileSync as a promise
 const init = () => {
