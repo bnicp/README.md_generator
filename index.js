@@ -1,8 +1,10 @@
-// TODO: Include packages needed for this application
+// packages needed for this application
+
 const inquirer = require('inquirer');
 const fs = require('fs');
 
 // questions for user input
+
 const promptUser = () => {
   return inquirer.prompt([
     {
@@ -29,7 +31,7 @@ const promptUser = () => {
       type: 'list',
       name: 'license',
       message: 'Please select the license needed for your project.',
-      choices: ['MIT', 'ISC', "GNUPv3"],
+      choices: ['MIT', 'GNUPv3', 'ISC'],
       filter(val) {
         return val.toLowerCase
       }
@@ -51,18 +53,47 @@ const promptUser = () => {
     },
     {
       type: 'input',
-      name: 'gtihub',
+      name: 'github',
       message: 'Enter your github username.',
     },
   ]);
 };
+
+
+// function to render license badges and links
+function licenseBadge(license) {
+  if (license == 'None') {
+    licenseBadge = ''
+  } else if (license == 'MIT'){
+    licenseBadge = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)'
+  } else if (license == 'GNUPv3'){
+    licenseBadge = '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)'
+  } else if (license == 'ISC'){
+    licenseBadge = '[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)'
+}
+}
+
+function licenseLink(license) {
+    if (license == 'None') {
+    licenseLink = ''
+  } else if (license == 'MIT'){
+    licenseLink = 'https://opensource.org/licenses/MIT'
+  } else if (license == 'GNUPv3'){
+    licenseLink = 'https://www.gnu.org/licenses/gpl-3.0.en.html'
+  } else if (license == 'ISC'){
+    licenseLink = 'https://opensource.org/licenses/ISC'
+  }
+}
 
 // function to write README file
 
 const generateREADME = ({ title, description, installation, usage, license, contribute, tests, email, github }) =>
 
 // insert template for new readme doc
-`## ${title}
+
+`${licenseBadge}
+
+## ${title}
 
 ## Description
 
@@ -72,8 +103,11 @@ ${description}
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Credits](#credits)
 - [License](#license)
+- [Credits](#credits)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
 
 ## Installation
 
@@ -85,7 +119,7 @@ ${usage}
 
 ## License
 
-${license}
+${license}: ${licenseLink}
 
 ## Contributing
 
@@ -96,8 +130,8 @@ ${contribute}
 ${tests}
 
 ## Questions
-${email}
-${github}`;
+Email: ${email}
+Github: https://github.com/${github}`;
 
 // Use writeFileSync method to use promises instead of a callback function
 const init = () => {
