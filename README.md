@@ -14,7 +14,7 @@ Vanilla JavaScript
 
 ## Usage
 
-![generator walkthrough](./readme_walkthrough.mp4)
+![generator walkthrough](./readme-generator-walkthrough.gif)
 
 Input to run app: node index.js
 
