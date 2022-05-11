@@ -1,9 +1,9 @@
 // packages needed for this application
-
 const inquirer = require('inquirer');
 const fs = require('fs');
+const licenseInfo = require("./utils/generateMarkdown.js");
 
-// questions for user input
+//questions for user input
 
 const promptUser = () => {
   return inquirer.prompt([
@@ -31,10 +31,7 @@ const promptUser = () => {
       type: 'list',
       name: 'license',
       message: 'Please select the license needed for your project.',
-      choices: ['MIT', 'GNUPv3', 'ISC'],
-      filter(val) {
-        return val.toLowerCase
-      }
+      choices: ['None', 'MIT', 'GNU GPL v3', 'ISC', 'Mozilla'],
     },
     {
       type: 'input',
@@ -60,40 +57,13 @@ const promptUser = () => {
 };
 
 
-// function to render license badges and links
-function licenseBadge(license) {
-  if (license == 'None') {
-    licenseBadge = ''
-  } else if (license == 'MIT'){
-    licenseBadge = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)'
-  } else if (license == 'GNUPv3'){
-    licenseBadge = '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)'
-  } else if (license == 'ISC'){
-    licenseBadge = '[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)'
-}
-}
-
-function licenseLink(license) {
-    if (license == 'None') {
-    licenseLink = ''
-  } else if (license == 'MIT'){
-    licenseLink = 'https://opensource.org/licenses/MIT'
-  } else if (license == 'GNUPv3'){
-    licenseLink = 'https://www.gnu.org/licenses/gpl-3.0.en.html'
-  } else if (license == 'ISC'){
-    licenseLink = 'https://opensource.org/licenses/ISC'
-  }
-}
-
 // function to write README file
-
-const generateREADME = ({ title, description, installation, usage, license, contribute, tests, email, github }) =>
+const generateREADME = ({title, description, installation, usage, license, contribute, tests, email, github}) =>
 
 // insert template for new readme doc
+`## ${title}
 
-`${licenseBadge}
-
-## ${title}
+${licenseInfo.renderLicenseBadge(license)}
 
 ## Description
 
@@ -119,7 +89,7 @@ ${usage}
 
 ## License
 
-${license}: ${licenseLink}
+${licenseInfo.renderLicenseLink(license)}
 
 ## Contributing
 
@@ -135,9 +105,9 @@ Github: https://github.com/${github}`;
 
 // Use writeFileSync method to use promises instead of a callback function
 const init = () => {
-  promptUser()
-    .then((answers) => fs.writeFileSync('README1.md', generateREADME(answers)))
-    .then(() => console.log('Successfully wrote to README1.md'))
+   promptUser()
+    .then((answers) => fs.writeFileSync('README-test.md', generateREADME(answers)))
+    .then(() => console.log('Successfully wrote to README-test.md'))
     .catch((err) => console.error(err));
 };
 
