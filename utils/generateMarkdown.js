@@ -5,16 +5,16 @@ function renderLicenseBadge(license) {
     return ``;
   }
   if (license === "ISC") {
-    return `[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)]`;
+    return `[!License: ISC.](https://img.shields.io/badge/License-ISC-blue.svg)`;
   }
   if (license === "MIT") {
-    return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]`;
+    return `![License: MIT.](https://img.shields.io/badge/License-MIT-yellow.svg)`;
   }
   if (license === "Mozilla") {
-    return `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)]`;
+    return `![License: MPL 2.0.](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)`;
   }
   if (license === "GNU GPL v3") {
-    return `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)]`;
+    return `![License: GPL v3.](https://img.shields.io/badge/License-GPLv3-blue.svg)`;
   }
 };
 

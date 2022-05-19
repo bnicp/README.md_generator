@@ -1,10 +1,10 @@
-## test
+## README Generator
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)]
+![License: MIT.](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 ## Description
 
-test test test
+Answering questions in node allows a user to create a fully formatted README for their project.
 
 ## Table of Contents
 
@@ -18,23 +18,23 @@ test test test
 
 ## Installation
 
-test test test test
+Make sure you have node installed locally and run in a terminal  with "node index.js"
 
 ## Usage
 
-test test test test test
+Use to dynamically generate the structure of a README without having to start from scratch or copy/paste.
 
 ## License
 
-GNU GPL v3: https://www.gnu.org/licenses/gpl-3.0.en.html
+MIT: https://opensource.org/licenses/MIT
 
 ## Contributing
 
-test test test
+Please contact me if you'd like to add to this project.
 
 ## Tests
 
-test test test
+
 
 ## Questions
 Email: bnp415@gmail.com
